@@ -5,7 +5,13 @@
 void Number::reverseStr(string& str) const {
 	reverse(str.begin(), str.end());
 	for (int i = 0; i < str.length(); i++) {
-		if (str[i] == ')') str[i] = '(';
+		if (str[i] == ')') {
+			int closeBr = str.find("(", i + 1);
+			if (closeBr != -1) {
+				reverse(&str[i + 1], &str[closeBr]);
+			}
+			str[i] = '(';
+		}
 		else if (str[i] == '(') str[i] = ')';
 	}
 }
