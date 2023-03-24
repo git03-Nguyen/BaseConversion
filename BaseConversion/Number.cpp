@@ -24,7 +24,7 @@ bool Number::isValid(const string& inValue, const int& inBase) const {
 	// Check error: 2 dots in a real number
 	int dot1 = inValue.find(".");
 	int dot2 = inValue.rfind(".");
-	if (dot1 != 1 && dot1 != dot2) return false;
+	if (dot1 != -1 && dot1 != dot2) return false;
 	// Check if exist a digit not in the base-N's digit set. ie: if exist '2' in base-2 number
 	for (int begin = 0; begin < inValue.length(); begin++) {
 		if (inValue[begin] == '.') continue;
@@ -79,6 +79,12 @@ string Number::encode(const int& digitVal) const {
 }
 
 void Number::standardize() {
+	// Uppercase all undercase characters
+	for (int i = 0; i < absValue.length(); i++) {
+		if (absValue[i] >= 'a' && absValue[i] <= 'z') {
+			absValue[i] -= 32;
+		}
+	}
 	if (absValue.length() > 1) {
 		// ie: 00001, 001.5, ...
 		while (absValue[0] == '0' && absValue[1] != '.') {

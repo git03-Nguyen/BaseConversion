@@ -36,12 +36,17 @@ int main() {
 			cin >> newBase;
 			try {
 				num.convertBase(newBase);
+				cout << "Converted! Current number: " << num << endl;
+				system("PAUSE");
 			}
 			catch (const char* e) {
 				cout << e << endl;
 				system("PAUSE");
 				break;
 			}
+			break;
+		case 0:
+			cout << "Exiting..." << endl;
 			break;
 		default:
 			break;
@@ -58,6 +63,8 @@ int main() {
 		cout << "1. Change number & base" << endl;
 		cout << "2. Convert to other base" << endl;
 		cout << "0. Exit" << endl;
+		cout << "Note: If base > 36, the digits after 'Z' will be '(0)', '(1)', '(2)', ..." << endl;
+		cout << "----" << endl;
 		cout << "Enter your choice: ";
 		cin >> choice;
 	}
